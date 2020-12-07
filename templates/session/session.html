@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle It!</title>
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/popper"></script>
+    <script src="https://unpkg.com/bootstrap"></script>
+
+    <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container justify-content-center" align="center" id="session_info">
+        <h1 id="current_user">Current User: #1</h1>
+        <h2 id="title"></h2>
+        <img id="backdrop_path" onerror="this.onerror=null; this.src='https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'" alt="No Image Found :(">
+
+        <div class="col-xs-1 container justify-content-center" align="center" id="display_data">
+            <div class="justify-content-center" id="choice_btns">
+                <button class="btn btn-danger btn-lg" type="button" id="no">No</button>
+                <button class="btn btn-primary btn-lg" type="button" name="yes" id="yes">Yes</button>
+            </div>
+            <div class="card" id="session_card">
+                <div class="card-body">
+                    <h4 class="card-subtitle mb-2" id="original_language"></h4>
+                    <p class="card-text" id="overview"></p>
+                    <h5 class="card-text" id="release_date"></h5>
+                </div>
+            </div><br>
+            <span class="d-block" align="left" id="end">
+                <a href="/" class="btn btn-info">End early</a>
+            </span>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>

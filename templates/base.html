@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Settle It!</title>
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/popper"></script>
+    <script src="https://unpkg.com/bootstrap"></script>
+
+    <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <body class="{% block body_class %}{% endblock %}">
+        <!--Navbar-->
+        <div class="topnav">
+            <a href="/" class="navbar-brand">Home</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+                {% if not g.user %}
+              <a href="/signup">Sign Up</a>
+              <a href="/login">Log in</a>
+                {% else %}
+            <a href="/users/{{ g.user.id }}">Profile</a>
+              <form class="navbar-form navbar-right" id="search-term" action="/search/reviews">
+                <input name="q" class="form-control" placeholder="  Search Review" id="search">
+                <button class="btn btn-default">
+                        <i class="fa fa-search"></i>
+                </button>
+              </form>
+              <a href="/reviews/add">Write Review</a>
+              <a href="/logout">Log out</a>
+                {% endif %}
+            </div>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="toggleNav()">
+              <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        
+        <div class="container">
+          {% for category, message in get_flashed_messages(with_categories=True) %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        
+          {% block content %}
+          {% endblock %}
+        
+        </div>
+    
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/general.js"></script>
+</body>
+</html>

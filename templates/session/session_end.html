@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settle It!</title>
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/popper"></script>
+    <script src="https://unpkg.com/bootstrap"></script>
+
+    <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container justify-content-center" align="center" id="session_info">
+        <h2>It is settled!!</h2>
+    </div>
+    <div class="container justify-content-center" align="center" id="session_info">
+        <h1 id="title"></h1>
+        <img id="backdrop_path" onerror="this.onerror=null; this.src='https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg'" alt="No Image Found :(">
+
+        <div class="col-xs-1 container justify-content-center" align="center" id="display_data">
+            <div class="justify-content-md-center" id="choice_btns">
+                <a href="/" class="btn btn-success btn-lg" id="no">End Session</a>
+                <a href="/reviews/add" class="btn btn-warning btn-lg" id="yes">Write review</a>
+            </div>
+            <div class="card" id="session_card">
+                <div class="card-body">
+                    <h4 class="card-subtitle mb-2" id="original_language"></h4>
+                    <p class="card-text" id="overview"></p>
+                    <h5 class="card-text" id="release_date"></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="/static/results.js"></script>
+</body>
+</html>

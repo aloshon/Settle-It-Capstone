@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<img src="{{ user.avatar }}" alt="Image for {{ user.username }}" id="profile-avatar">
+<div class="row full-width">
+  <div class="container">
+    <div class="row justify-content-end">
+      <div class="col-10">
+        <ul class="user-stats nav nav-pills">
+          <li class="stat col-xs-4">
+            <p class="small" id="liked">Likes</p>
+            <h4>
+              <a href="/users/likes/{{ user.id }}">{{ user.likes | length }}</a>
+            </h4>
+          </li>
+          {% if g.user.id == user.id %}
+          <div class="ml-auto stat col-xs-4">
+            <a href="/users/edit" id="edit-btn" class="btn btn-sm btn-outline-secondary user-only">Edit</a>
+            <a href="/users/delete" class="btn btn-sm btn-outline-danger user-only">Delete</a>
+            {% endif %}
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<h2 id="profile-username">{{ user.username }}'s profile</h2>
+{% if reviews|length == 0 %}
+    <h2 class="no-reviews">No reviews found...</h2>
+  {% else %}
+<div class="container">
+<ul class="list-group" id="reviews">
+  {% for review in reviews %}
+  <li class="list-group-item">
+    <a href="/reviews/{{ review.id }}">
+      <img src="{{ review.user.avatar }}" alt="" class="timeline-image">
+    </a>
+    <div class="review-area">
+      <a href="/users/{{ review.user.id }}">@{{ review.user.username }}</a>
+      <span class="text-muted">{{ review.timestamp.strftime('%d %B %Y') }}</span>
+      <p>{{ review.rating }}/10 stars</p>
+      <a href="/reviews/{{ review.id }}"><h2 class="review-title">{{ review.title }}</h2></a>
+      <p>{{ review.text }}</p>
+    </div>
+    <form method="GET" action="/users/add_comment/{{ review.id }}" id="reviews-comment">
+        <button class="
+          btn btn-sm btn-info">
+        <i class="fas fa-comments"></i>
+        </button>
+        {{ review.comments | length }}
+      </form>
+    {% if review in g.user.likes %}
+    <form method="POST" action="/reviews/add_like/{{ review.id }}" id="review-like">
+      <button id="like-btn" class="
+        btn btn-sm btn-primary">
+        <i class="fa fa-thumbs-up"></i> 
+      </button>
+      {{ review.likes | length }}
+    </form>
+    {% else %}
+    <form method="POST" action="/reviews/add_like/{{ review.id }}" id="review-like">
+      <button id="like-btn" class="
+        btn btn-sm btn-secondary">
+        <i class="fa fa-thumbs-up"></i> 
+      </button>
+      {{ review.likes | length }}
+    </form>
+    {% endif %}
+  </li>
+{% endfor %} 
+{% endif %}
+  </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- <div class="bg"></div> -->
+  <div class="row justify-content-center">
+    <div class="col-xs-10 col-sm-12 col-md-14">
+      <ul class="list-group no-hover" id="reviews">
+        <li class="list-group-item">
+          <div class="review-area">
+            <div class="review-heading">
+              <a href="/reviews/{{ review.id }}"><h2 class="review-title" id="review-title-details">{{ review.title }}</h2></a>
+                </div>
+                  <li class="list-group-item">
+                    <a href="/reviews/{{ review.id }}">
+                      <img src="{{ review.user.avatar }}" alt="" class="timeline-image">
+                    </a>
+                    <div class="review-area">
+                      <a href="/users/{{ review.user.id }}">@{{ review.user.username }}</a>
+                      <span class="text-muted">{{ review.timestamp.strftime('%d %B %Y') }}</span>
+                      <p>{{ review.rating }}/10 stars</p>
+                      <p>{{ review.text }}</p>
+                    </div>
+                    <form method="GET" action="/users/add_comment/{{ review.id }}" id="reviews-comment">
+                        <button class="
+                          btn btn-sm btn-info"
+                        >
+                        <i class="fas fa-comments"></i>
+                        </button>
+                        {{ review.comments | length }}
+                      </form>
+                    {% if review in g.user.likes %}
+                    <form method="POST" action="/reviews/add_like/{{ review.id }}" id="review-like">
+                      <button id="like-btn" class="
+                        btn btn-sm btn-primary">
+                        <i class="fa fa-thumbs-up"></i> 
+                      </button>
+                      {{ review.likes | length }}
+                    </form>
+                    {% else %}
+                    <form method="POST" action="/reviews/add_like/{{ review.id }}" id="review-like">
+                      <button id="like-btn" class="
+                        btn btn-sm btn-secondary"
+                      >
+                        <i class="fa fa-thumbs-up"></i> 
+                      </button>
+                      {{ review.likes | length }}
+                    </form><br>
+                    {% endif %}
+                  </li>
+      </ul>
+    </div>
+  </div>
+  {% if g.user %}
+    {% if g.user.id == review.user.id %}
+      <div class="input-group">
+        <form method="POST"
+          action="/reviews/{{ review.id }}/delete">
+          <button class="btn btn-sm btn-danger review-owner">Delete Review</button>
+        </form>
+        <form method="POST"
+          action="/reviews/{{ review.id }}/edit">
+          <button class="btn btn-sm btn-success review-owner">Edit Review</button>
+        </form>
+      </div>
+    {% endif %}
+  {% endif %}
+  <div class="container">
+  <div class="col-xs-8 col-sm-10 justify-content-center">
+    <h1 class="display-4 text-center">Comments: </h1>
+    {% if review.comments|length == 0 %}
+    <h4>No comments yet.</h4>
+  {% else %}
+    <ul class="list-group" id="reviews">
+      {% for comment in review.comments %}
+        <li class="list-group-item">
+          <a href="/users/{{ comment.user.id }}">
+            <img src="{{ comment.user.avatar }}" alt="" class="timeline-image">
+          </a>
+          <div class="review-area">
+            <a href="/users/{{ comment.user.id }}">@{{ comment.user.username }}</a>
+            <span class="text-muted">{{ comment.timestamp.strftime('%d %B %Y') }}</span>
+            <p>{{ comment.comment }}</p>
+          </div>
+          {% if g.user %}
+            {% if g.user.id == comment.user_id %}
+              <form method="POST"
+                action="/comments/{{ comment.id }}/delete" id="comment-delete">
+                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+              </form>
+              {% endif %}
+              {% endif %}
+        </li>
+      {% endfor %}
+      {% endif %}
+
+    </ul>
+  </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 id="header">Settle It!</h1>
+    <div class="justify-content-center" align="center" id="home_options">
+        <div class="home-btns m-auto" align="center" id="tv_btn" onClick="location.href = '/session/tv/form'; localStorage.setItem('type', 'tv');">
+            TV!<br><i class="fas fa-tv"></i>
+        </div>
+        <div class="home-btns m-auto" align="center" id="movie_btn" onClick="location.href = '/session/movie/form'; localStorage.setItem('type', 'movie');">
+            Movie!<br><i class="fa fa-film"></i>
+        </div>
+    </div>
+{% endblock %}
