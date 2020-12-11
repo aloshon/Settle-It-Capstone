@@ -5,7 +5,6 @@ from sqlalchemy.exc import IntegrityError
 
 from forms import UserAddForm, LoginForm, ReviewForm, CommentForm, EditReviewForm, DeleteReviewForm, SessionTvForm, SessionMovieForm
 from models import db, connect_db, User, Review, Comment
-import string
 
 CURR_USER_KEY = "curr_user"
 
@@ -132,6 +131,10 @@ def start_page():
 def get_searched_reviews():
     """Page with the list of users based on the query"""
 
+    if not g.user:
+        flash("Access unauthorized.", "danger")
+        return redirect("/")
+
     search = request.args.get('q')
 
     if not search:
@@ -240,7 +243,7 @@ def add_review():
 
     if form.validate_on_submit():
         review = Review(
-            title=string.capwords(form.name.data),
+            title=form.name.data,
             rating=form.rating.data,
             text=form.text.data)
         g.user.reviews.append(review)
@@ -300,7 +303,7 @@ def edit_review(review_id):
         if User.authenticate(g.user.username, form.password.data) != g.user:
             flash("Incorrect password", "danger")
             return redirect("/")
-        review.title = string.capwords(form.name.data)
+        review.title = form.name.data
         review.text = form.text.data
         review.rating = form.rating.data
 

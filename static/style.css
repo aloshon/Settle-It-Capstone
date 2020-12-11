@@ -360,7 +360,7 @@ body {
 
   .review-title {
     font-family: Impact, Charcoal, sans-serif;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   #reviews.no-hover .review-area {
