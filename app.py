@@ -3,8 +3,9 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, g, make_response
 from sqlalchemy.exc import IntegrityError
 
-from forms import UserAddForm, LoginForm, ReviewForm, CommentForm, EditReviewForm, DeleteReviewForm, SessionTvForm, SessionMovieForm, DeleteUserForm
+from forms import UserAddForm, EditUserForm, LoginForm, ReviewForm, CommentForm, EditReviewForm, DeleteReviewForm, SessionTvForm, SessionMovieForm, DeleteUserForm
 from models import db, connect_db, User, Review, Comment
+from validate_email import validate_email
 
 CURR_USER_KEY = "curr_user"
 
@@ -72,10 +73,11 @@ def signup():
                 email=form.email.data,
                 avatar=form.avatar.data or User.avatar.default.arg
             )
+            valid_email = validate_email(form.email.data, verify=True)
             db.session.commit()
 
         except IntegrityError:
-            flash("Username already taken", 'danger')
+            flash("Username already taken or invalid email", 'danger')
             return render_template('/signup.html', form=form)
 
         do_login(user)
@@ -174,14 +176,13 @@ def profile():
         flash("Access unauthorized.", "danger")
         return redirect("/")
 
-    form = UserAddForm(obj=g.user)
+    form = EditUserForm(obj=g.user)
     user_id = g.user.id
 
     if form.validate_on_submit():
         g.user.username = form.username.data
-        g.user.email = form.email.data
         g.user.avatar = form.avatar.data
-        if User.authenticate(form.username.data, form.password.data) != g.user:
+        if User.authenticate(form.password.data) != g.user:
             flash("Incorrect password", "danger")
             return redirect("/")
 

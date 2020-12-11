@@ -28,7 +28,15 @@ class UserAddForm(FlaskForm):
 
     username = StringField('Username Max 25 characters*', validators=[DataRequired(), Length(max=25)])
     email = StringField('Email*', validators=[DataRequired()])
-    password = PasswordField('Password*', validators=[Length(min=6)])
+    password = PasswordField('Password*', validators=[DataRequired(), Length(min=6)])
+    avatar = SelectField('Select an Avatar', choices=avatars)
+
+
+class EditUserForm(FlaskForm):
+    """Form for editing users."""
+
+    username = StringField('Username Max 25 characters*', validators=[DataRequired(), Length(max=25)])
+    password = PasswordField('Password*', validators=[DataRequired(), Length(min=6)])
     avatar = SelectField('Select an Avatar', choices=avatars)
 
 
