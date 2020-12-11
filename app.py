@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, flash, redirect, session, g, make_response
 from sqlalchemy.exc import IntegrityError
 
-from forms import UserAddForm, LoginForm, ReviewForm, CommentForm, EditReviewForm, DeleteReviewForm, SessionTvForm, SessionMovieForm
+from forms import UserAddForm, LoginForm, ReviewForm, CommentForm, EditReviewForm, DeleteReviewForm, SessionTvForm, SessionMovieForm, DeleteUserForm
 from models import db, connect_db, User, Review, Comment
 
 CURR_USER_KEY = "curr_user"
