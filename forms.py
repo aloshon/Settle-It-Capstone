@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField, SelectField
-from wtforms.validators import DataRequired, Email, Length
+from wtforms.validators import DataRequired, Length
 
 avatars = [('https://img2.pngio.com/default-image-png-picture-710225-default-image-png-default-png-376_356.png', 'Default'),
 ('https://cdn.pixabay.com/photo/2020/10/08/19/32/snowman-5638857__480.png', 'Angry Snowman'),
@@ -27,7 +27,7 @@ class UserAddForm(FlaskForm):
     """Form for adding users."""
 
     username = StringField('Username Max 25 characters*', validators=[DataRequired(), Length(max=25)])
-    email = StringField('Email*', validators=[DataRequired(), Email()])
+    email = StringField('Email*', validators=[DataRequired()])
     password = PasswordField('Password*', validators=[Length(min=6)])
     avatar = SelectField('Select an Avatar', choices=avatars)
 
