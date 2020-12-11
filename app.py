@@ -5,7 +5,6 @@ from sqlalchemy.exc import IntegrityError
 
 from forms import UserAddForm, EditUserForm, LoginForm, ReviewForm, CommentForm, EditReviewForm, DeleteReviewForm, SessionTvForm, SessionMovieForm, DeleteUserForm
 from models import db, connect_db, User, Review, Comment
-from validate_email import validate_email
 
 CURR_USER_KEY = "curr_user"
 
@@ -73,7 +72,6 @@ def signup():
                 email=form.email.data,
                 avatar=form.avatar.data or User.avatar.default.arg
             )
-            valid_email = validate_email(form.email.data, verify=True)
             db.session.commit()
 
         except IntegrityError:
