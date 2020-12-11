@@ -337,7 +337,7 @@ def remove_review(review_id):
 
         return redirect(f"/users/{g.user.id}")
 
-    return render_template("reviews/delete_review.html", form=form)
+    return render_template("reviews/delete_review.html", form=form, review=review)
 
 ##############################################################################
 # Comment routes:
