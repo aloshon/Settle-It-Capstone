@@ -361,6 +361,7 @@ body {
   .review-title {
     font-family: Impact, Charcoal, sans-serif;
     overflow-wrap: break-word;
+    word-break: normal;
   }
   
   #reviews.no-hover .review-area {
