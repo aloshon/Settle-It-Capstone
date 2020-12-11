@@ -66,10 +66,11 @@ function fillPage(){
 
 function refillLists(){
     pagesCompleted++;
-    if (pagesCompleted = upper_bound - 1 || pagesCompleted > 99){
+    if (pagesCompleted === (upper_bound - 1) || pagesCompleted > 99){
         redirectIndecisive();
+    }else{
+        createLink(randomNum);
     }
-    createLink(randomNum);
 }
 
 function compareArrays(arr1, arr2) { 
@@ -203,7 +204,7 @@ function createLink(randomNum){
 }
 
 function checkGenre(genre, str){
-    if (genre = 'None'){
+    if (genre == 'None'){
         finished_link = link.replace("&with_genres=None", "");
         data = getResponse(finished_link);
 
