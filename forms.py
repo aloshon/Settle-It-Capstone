@@ -2,17 +2,16 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Email, Length
 
-avatars = [('https://p.kindpng.com/picc/s/78-786085_robot-01-icon-robot-free-icon-hd-png.png', 'Robot'),
-('https://p.kindpng.com/picc/s/78-786416_flat-design-png-avatar-transparent-png.png', 'Dancer with Afro'),
-('https://p.kindpng.com/picc/s/78-786705_king-of-fish-avatar-clip-arts-wajah-gambar.png', 'King of Fish'),
-('https://p.kindpng.com/picc/s/78-787370_avatar-icon-storybook-unicorn-transparent-icon-unicorn-hd.png', 'Unicorn'),
-('https://p.kindpng.com/picc/s/78-787300_grim-reaper-icon-roblox-tower-warfare-hd-png.png', 'Skull'),
-('https://p.kindpng.com/picc/s/78-787178_picture-freeuse-computer-icons-emoticon-avatar-clip-silent.png', 'Mouth Taped Shut'),
-('https://p.kindpng.com/picc/s/295-2955682_findings-festival-edm-avatar-hd-png-download.png', 'Colorful Mouse'),
-('https://p.kindpng.com/picc/s/280-2800820_avatar-beak-beginner-black-cute-emotion-face-linux.png', 'Penguin'),
-('https://p.kindpng.com/picc/s/146-1468523_bear-profile-icon-png-download-transparent-png.png', 'Bear'),
-('https://p.kindpng.com/picc/s/30-301598_cartoon-santa-hat-free-clip-art-on-santa.png', 'Holiday Bunny'),
-('https://img2.pngio.com/default-image-png-picture-710225-default-image-png-default-png-376_356.png', 'Default')]
+avatars = [('https://img2.pngio.com/default-image-png-picture-710225-default-image-png-default-png-376_356.png', 'Default'),
+('https://cdn.pixabay.com/photo/2020/10/08/19/32/snowman-5638857__480.png', 'Angry Snowman'),
+('https://cdn.pixabay.com/photo/2016/03/31/20/27/avatar-1295773__480.png', 'Dog'),
+('https://cdn.pixabay.com/photo/2016/12/13/16/17/dancer-1904467__480.png', 'Dancing Afro Dude'),
+('https://cdn.pixabay.com/photo/2016/03/31/21/40/angry-1296580__480.png', 'King of Fish'),
+('https://cdn.pixabay.com/photo/2013/07/12/15/34/character-150095__480.png', 'Gasping'),
+('https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295399__480.png', 'Penguin'),
+('https://cdn.pixabay.com/photo/2017/02/01/11/19/cartoon-chips-2029737__480.png', 'French Fries'),
+('https://cdn.pixabay.com/photo/2012/04/12/20/24/skull-30511__480.png', 'Top Hat Skull'),
+('https://cdn.pixabay.com/photo/2020/01/14/10/55/cartoon-4764726__480.png', "Vibin'n Pineapple")]
 
 
 ratings = [('1',1), ('2',2), ('3',3), ('4',4), ('5',5), ('6',6), ('7',7), ('8',8), ('9',9), ('10',10)]

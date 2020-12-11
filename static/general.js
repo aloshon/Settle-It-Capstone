@@ -3,7 +3,7 @@ let $movie_btn = document.getElementById("movie_btn");
 let $startSessionBtn = document.getElementById("session_start");
 let $last_settled = document.getElementById("last_settled");
 let $genre = document.getElementById("genre");
-api_key='15b5132e550555979a53ba7eec9012ca' // api key for getting movie data
+api_key='15b5132e550555979a53ba7eec9012ca' // api key for getting movie data, again its free
 
 function lastSession(){
     title = localStorage.getItem("last_session");
